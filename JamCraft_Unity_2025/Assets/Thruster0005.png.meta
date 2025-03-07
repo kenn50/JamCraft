@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a8b967421a6aed542bdf5d71b8e7c252
+guid: 312dfdfa476cd9b42965d6641a6f1a44
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8050421861787184614
-    second: BlackSquare_0
+      213: -4962817593269142924
+    second: Thruster0005_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BlackSquare_0
+      name: Thruster0005_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ed2dd3c708d8bf60800000000000000
-      internalID: 8050421861787184614
+      spriteID: 47a322c61b7802bb0800000000000000
+      internalID: -4962817593269142924
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      BlackSquare_0: 8050421861787184614
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

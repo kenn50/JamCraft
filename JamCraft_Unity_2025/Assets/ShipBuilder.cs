@@ -34,7 +34,7 @@ public class ShipBuilder : MonoBehaviour
         layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
         layout.constraintCount = matrix_size[0]; // Set columns count
         layout.cellSize = new Vector2(30, 30); // Adjust size
-        layout.spacing = new Vector2(2, 2); // Adjust spacing
+
 
         // Loop through the matrix and create UI elements
         for (int j = 0; j < shipMatrix.GetLength(1); j++)

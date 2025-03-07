@@ -78,7 +78,7 @@ public class Part_UI : MonoBehaviour
                 if (hoveredObject.GetComponent<Cell>().id == -1) snap = hoveredObject;
             }
 
-            snap.GetComponent<Cell>().DragEnd(gameObject);
+            snap.GetComponent<PartContainer>().DragEnd(gameObject);
 
             Destroy(gameObject);
         }

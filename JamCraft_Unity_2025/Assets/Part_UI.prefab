@@ -89,4 +89,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holding: 1
-  id: -1
+  id: 9999
+  old: {fileID: 0}
