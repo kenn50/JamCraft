@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - VerticalWall
-  - HorizontalWall
+  - Meteor
   layers:
   - Default
   - TransparentFX
