@@ -13,10 +13,10 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject, 10);
         rb = GetComponent<Rigidbody2D>();
-        //target = ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition)-transform.position) + Random.insideUnitCircle * randomness);
-        rb.linearVelocity = ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized*speed;
-        //transform.position =  Vector2.MoveTowards(transform.position, ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition)*100) + Random.insideUnitCircle * randomness), speed);
-        transform.Rotate(0, 0, Mathf.Atan2(rb.linearVelocity.normalized.y, rb.linearVelocity.normalized.x) * 180 / Mathf.PI - 90);
+        
+        rb.linearVelocity = transform.up*speed;
+        
+        //transform.Rotate(0, 0, Mathf.Atan2(rb.linearVelocity.normalized.y, rb.linearVelocity.normalized.x) * 180 / Mathf.PI - 90);
     }
 
 
@@ -30,6 +30,9 @@ public class Bullet : MonoBehaviour
             enemy.Damage(1f, transform);
             // Optionally, destroy the bullet after collision
             Destroy(gameObject);
+        }
+        else {
+            print (collision.gameObject);
         }
     }
 

@@ -4,7 +4,12 @@ public class GM : MonoBehaviour
 {
     public ProgressBar time_bar;
 
+    
+
     public int player_kills = 0;
+
+    public float seconds_to_next_round = 20f;
+
 
 
     private void Start() {
@@ -12,7 +17,7 @@ public class GM : MonoBehaviour
     }
 
     public void Update() {
-        time_bar.percent_filled += Time.deltaTime*0.05f;
+        time_bar.percent_filled += Time.deltaTime/seconds_to_next_round;
         
     }
 }

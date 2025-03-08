@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Meteor : MonoBehaviour, IDestructable {
     public float speed;
@@ -7,37 +8,28 @@ public class Meteor : MonoBehaviour, IDestructable {
     public GameObject meteor_explosion;
     public GameObject dustParticle;
 
+    public List<Sprite> meteor_sprites;
+    int current = 0;
+
     private Collider2D c2d;
 
     public float hp = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
+        current = 0;
+        GetComponent<SpriteRenderer>().sprite = meteor_sprites[current];
         c2d = GetComponent<Collider2D>(); // Cache the collider
-        GetComponent<Rigidbody2D>().linearVelocity = move_dir * speed;  // Corrected typo: 'linearVelocity' to 'velocity'
-        GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-45f, 45f);
 
-        transform.Rotate(0, 0, Random.Range(0, 360));
-        Destroy(gameObject, 20);
     }
 
-    // Update is called once per frame
-    void Update() {
-        // Check if the spacebar is pressed and if the mouse is hovering over the object
-        if (Input.GetKeyDown(KeyCode.Space) && IsMouseOverObject()) {
-            //Die();
-        }
-    }
 
-    // Function to check if the mouse is over the object
-    bool IsMouseOverObject() {
-        // Convert mouse position to world space and check if it's over the collider
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return c2d.OverlapPoint(mousePosition);
-    }
 
     public void Damage (float damage, Transform bullet) {
         hp -= damage;
+        current += 1;
+        GetComponent<SpriteRenderer>().sprite = meteor_sprites[Mathf.Clamp(current, 0, meteor_sprites.Count - 1)];
+
         if (hp <= 0) Die();
         else Destroy(Instantiate(dustParticle, bullet.position, bullet.rotation),2);
     }
@@ -48,8 +40,11 @@ public class Meteor : MonoBehaviour, IDestructable {
         print(g);
         c2d.enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
+        EnemyShoot es = GetComponent<EnemyShoot>();
+        if (es != null) es.enabled = false;
         GetComponent<Rigidbody2D>().linearDamping = 1;
         GetComponent<Rigidbody2D>().angularVelocity *= 0;
+
 
         Destroy(gameObject,3);
     }

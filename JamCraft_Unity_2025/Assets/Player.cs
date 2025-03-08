@@ -15,6 +15,15 @@ public class Player : MonoBehaviour, IDestructable
             case "Meteor":
                 Die();
                 break;
+            case "Power":
+                Shoot shootScript = GetComponent<Shoot>();
+                Power powerScript = collision.gameObject.GetComponent<Power>();
+                shootScript.SetState(powerScript.power);
+                shootScript.end_power_time = Time.time + powerScript.duration;
+
+                Destroy(collision.gameObject);
+
+                break;
             
 
         }

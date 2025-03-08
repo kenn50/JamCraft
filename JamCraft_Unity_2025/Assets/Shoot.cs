@@ -6,16 +6,62 @@ public class Shoot : MonoBehaviour
     public float bulletSpeed;
     public float spread;
 
+    string state = "normal";
+
+    public Sprite normalSprite, graySprite;
+    SpriteRenderer sr;
+
+    public float end_power_time;
+
+    private void Start() {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
-            Rigidbody2D bulRB = bul.GetComponent<Rigidbody2D>();
-            //bulRB.linearVelocity = ((Vector2)((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized + Random.insideUnitCircle * spread) * bulletSpeed;
+        if (state == "triple") TripleShot();
 
-            //bul.GetComponent<Transform>().Rotate(0, 0, Mathf.Atan2(bulRB.linearVelocity.normalized.y, bulRB.linearVelocity.normalized.x) * 180 / Mathf.PI-90);
+        else NormalShoot();
+
+
+        if (Time.time > end_power_time) {
+            SetState("normal");
         }
+    }
+
+    public void SetState(string mode) {
+        state = mode;
+        if (state == "normal") {
+            sr.sprite = normalSprite;
+            sr.color = Color.white;
+        }
+        else if (state == "triple") {
+            sr.sprite = graySprite;
+        }
+    }
+
+    void NormalShoot() {
+        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            Fire(((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
+        }
+    }
+    void TripleShot () {
+        CrazyColors();
+        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            Fire(((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
+            Fire(Quaternion.Euler(0,0,-30) * ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
+            Fire(Quaternion.Euler(0, 0, 30) * ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
+        }
+    }
+
+    void CrazyColors() {
+        sr.color = Color.HSVToRGB((Time.time / 2) % 1, 1, 1);
+    }
+
+    void Fire (Vector2 dir) {
+        GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
+
+        bul.transform.Rotate(0, 0, Mathf.Atan2(dir.y, dir.x) * 180 / Mathf.PI - 90);
     }
 }
