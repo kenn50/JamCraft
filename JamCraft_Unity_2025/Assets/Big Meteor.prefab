@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1030312766342296826}
   - component: {fileID: -4965648920722365131}
   - component: {fileID: 3929222367890891698}
+  - component: {fileID: -7850213304929173780}
   m_Layer: 8
   m_Name: Big Meteor
   m_TagString: Meteor
@@ -87,7 +88,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &1030312766342296826
@@ -133,6 +134,10 @@ MonoBehaviour:
   move_dir: {x: 0, y: 0}
   meteor_explosion: {fileID: 8066610565460268398, guid: e82e7cc266dc60e42a13b93134fc8d87, type: 3}
   dustParticle: {fileID: 8066610565460268398, guid: fba94bcd85dd2eb4eb8f1957ada87091, type: 3}
+  meteor_sprites:
+  - {fileID: -8439623261950613814, guid: a50b4b903dca85644a279954e4612949, type: 3}
+  - {fileID: -8439623261950613814, guid: 16443162a87fa524db581f6bb9038463, type: 3}
+  - {fileID: -8439623261950613814, guid: 63d65b200b0205e46aa86c9f6d223996, type: 3}
   hp: 3
 --- !u!61 &3929222367890891698
 BoxCollider2D:
@@ -180,3 +185,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-7850213304929173780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598749470241918872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e61e4068ea92e74ba3ac04ac10d3667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move_dir: {x: 0, y: 0}
+  speed: 5
