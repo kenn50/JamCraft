@@ -22,16 +22,12 @@ public class Bullet : MonoBehaviour
 
     // This method is called when the bullet collides with another object
     private void OnCollisionEnter2D(Collision2D collision) {
+
+        IDestructable enemy = collision.gameObject.GetComponent<IDestructable>();
+
         // Check if the object we collided with has the "Meteor" tag
-        if (collision.gameObject.CompareTag("Meteor")) {
-            // Find the Meteor script on the collided object
-            Meteor meteorScript = collision.gameObject.GetComponent<Meteor>();
-
-            // If the Meteor script is found, call its Explode function
-            if (meteorScript != null) {
-                meteorScript.Explode();
-            }
-
+        if (enemy != null) {
+            enemy.Damage(1f, transform);
             // Optionally, destroy the bullet after collision
             Destroy(gameObject);
         }
