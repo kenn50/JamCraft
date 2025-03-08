@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1030312766342296826}
   - component: {fileID: -4965648920722365131}
   - component: {fileID: 3929222367890891698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Big Meteor
   m_TagString: Meteor
   m_Icon: {fileID: 0}
@@ -131,8 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   move_dir: {x: 0, y: 0}
-  meteor_explosion: {fileID: 8066610565460268398, guid: db6738777d72ce141896e2fbecd8238f, type: 3}
-  dustParticle: {fileID: 8066610565460268398, guid: e82e7cc266dc60e42a13b93134fc8d87, type: 3}
+  meteor_explosion: {fileID: 8066610565460268398, guid: e82e7cc266dc60e42a13b93134fc8d87, type: 3}
+  dustParticle: {fileID: 8066610565460268398, guid: fba94bcd85dd2eb4eb8f1957ada87091, type: 3}
   hp: 3
 --- !u!61 &3929222367890891698
 BoxCollider2D:

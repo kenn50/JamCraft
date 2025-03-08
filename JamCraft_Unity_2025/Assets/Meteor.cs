@@ -53,7 +53,12 @@ public class Meteor : MonoBehaviour, IDestructable {
 
         Destroy(gameObject,3);
     }
+
+   
 }
+
+
+
 
 
 public interface IDestructable {
