@@ -103,10 +103,10 @@ TextureImporter:
       name: New Piskel-1.png(1)_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 141
-        width: 501
-        height: 225
+        x: 20
+        y: 137
+        width: 509
+        height: 233
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

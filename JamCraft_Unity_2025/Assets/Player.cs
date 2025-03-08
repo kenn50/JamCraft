@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDestructable
 {
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -19,9 +20,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Damage(float damage, Transform t) {
+        Die();
+    }
 
     public void Die() {
-        Destroy(gameObject);
+        SceneManager.LoadScene(0);
 
     }
 
