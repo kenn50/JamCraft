@@ -5,10 +5,10 @@ using Unity.VisualScripting;
 public class FireAnim : MonoBehaviour
 {
 
-    public float mult = 0.90f;
-    public float t = 0.15f;
-    public int frames_small = 10;
-    public int frames_large = 20;
+    public float mult = 0.93f;
+    public float t = 0.2f;
+    public int frames_small = 6;
+    public int frames_large = 6;
     Vector3 startScale;
 
     private void Start()
