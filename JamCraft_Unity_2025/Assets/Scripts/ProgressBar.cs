@@ -21,6 +21,7 @@ public class ProgressBar : MonoBehaviour
     void Update()
     {
 
+
         percent_filled = Mathf.Clamp(percent_filled, 0f, 1f);
         filled.sizeDelta = new Vector2(percent_filled * container.sizeDelta.x, filled.sizeDelta.y);
 
@@ -28,6 +29,10 @@ public class ProgressBar : MonoBehaviour
             on_full();
             full = true;
         }
+
+
+
+
 
 
     }
