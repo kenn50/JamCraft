@@ -3,13 +3,31 @@ using UnityEngine;
 public class UFO : MonoBehaviour, IDestructable {
 
     public GameObject ufo_explosion;
+    GameObject player;
 
+
+    public Transform dir_pointer;
     public void Damage(float damage, Transform bullet) {
         Die();
     }
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void Update()
+    {
+        Vector2 dir = (transform.position + Random.insideUnitSphere).normalized;
+        if (player != null) dir = (player.transform.position - transform.position).normalized;
+        dir_pointer.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * 180 / Mathf.PI);
+
+
+    }
+
     // Explode function
     public void Die() {
+        dir_pointer.gameObject.SetActive(false);
         GameObject g = Instantiate(ufo_explosion, transform.position, Quaternion.identity, transform);
         foreach (Collider2D c in GetComponents<Collider2D>()){
             c.enabled = false;

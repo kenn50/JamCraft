@@ -24,6 +24,9 @@ public class EnemyShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
         if (Mathf.Abs(transform.position.x)<10 && Mathf.Abs(transform.position.y) < 6)
         ShootWave();
     }
