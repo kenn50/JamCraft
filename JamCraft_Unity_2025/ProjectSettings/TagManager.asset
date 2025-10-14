@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Meteor
-  - Power
   - DeathScreen
+  - Power
   layers:
   - Default
   - TransparentFX

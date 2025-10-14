@@ -18,7 +18,7 @@ public class GM : MonoBehaviour
 
     public Text wave_text;
 
-    public MeteorSpawner meteor_spawner, big_meteor_spawner, ufo_spawner, power_spawner;
+    public MeteorSpawner meteor_spawner, big_meteor_spawner, ufo_spawner, power_spawner, speed_up, flying_enemy;
 
     bool started = false;
     public ScoreScript scoreScript;
@@ -28,7 +28,9 @@ public class GM : MonoBehaviour
         public Vector2 meteor_spawner_interval;
         public Vector2 big_meteor_spawner_interval;
         public Vector2 ufo_spawner_interval;
-        public Vector2 power_spawner_interval;
+        public Vector2 triple_spawner_interval;
+        public Vector2 speed_up_spawner_interval;
+        public Vector2 flying_enemy_spawner_interval;
     }
 
     public List<Wave> waves;
@@ -80,7 +82,9 @@ public class GM : MonoBehaviour
             meteor_spawner.Interval = waves[current_wave].meteor_spawner_interval;
             big_meteor_spawner.Interval = waves[current_wave].big_meteor_spawner_interval;
             ufo_spawner.Interval = waves[current_wave].ufo_spawner_interval;
-            power_spawner.Interval = waves[current_wave].power_spawner_interval;
+            power_spawner.Interval = waves[current_wave].triple_spawner_interval;
+            speed_up.Interval = waves[current_wave].speed_up_spawner_interval;
+            flying_enemy.Interval = waves[current_wave].flying_enemy_spawner_interval;
         }
         else {
             Vector2 m = meteor_spawner.Interval;
@@ -101,6 +105,12 @@ public class GM : MonoBehaviour
             m.x = Mathf.Max(m.x, hardest.ufo_spawner_interval.x);
             m.y = Mathf.Max(m.y, hardest.ufo_spawner_interval.y);
             ufo_spawner.Interval = m;
+
+            m = flying_enemy.Interval;
+            m *= 0.9f;
+            m.x = Mathf.Max(m.x, hardest.flying_enemy_spawner_interval.x);
+            m.y = Mathf.Max(m.y, hardest.flying_enemy_spawner_interval.y);
+            flying_enemy.Interval = m;
 
 
         }

@@ -68,7 +68,7 @@ public class Move : MonoBehaviour
             }
 
 
-             s *= 1.2f;
+             s *= 1f;
 
         }
 

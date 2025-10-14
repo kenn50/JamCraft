@@ -7,22 +7,20 @@ public class Shoot : MonoBehaviour
     public float bulletSpeed;
     public float spread;
 
-    string state = "normal";
+    public string state = "normal";
 
-    public Sprite normalSprite, graySprite;
-    SpriteRenderer sr;
 
     public float end_power_time;
 
     public AudioSource audiosource;
-    public AudioSource audiosourcePowerUp;
+    
 
     FireAnim fire_anim;
 
 
 
     private void Start() {
-        sr = GetComponent<SpriteRenderer>();
+        
         fire_anim = GetComponent<FireAnim>();
         
     }
@@ -30,7 +28,6 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (state == "triple") CrazyColors();
 
 
         if (GetComponent<Move>().control_moving) return;
@@ -46,22 +43,9 @@ public class Shoot : MonoBehaviour
 
 
 
-        if (Time.time > end_power_time) {
-            SetState("normal");
-        }
     }
 
-    public void SetState(string mode) {
-        state = mode;
-        if (state == "normal") {
-            sr.sprite = normalSprite;
-            sr.color = Color.white;
-        }
-        else if (state == "triple") {
-            sr.sprite = graySprite;
-            audiosourcePowerUp.Play();
-        }
-    }
+
 
     void NormalShoot() {
         
@@ -80,9 +64,7 @@ public class Shoot : MonoBehaviour
         
     }
 
-    void CrazyColors() {
-        sr.color = Color.HSVToRGB((Time.time / 2) % 1, 1, 1);
-    }
+    
 
     void Fire (Vector2 dir) {
         GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);

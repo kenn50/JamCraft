@@ -309,11 +309,9 @@ MonoBehaviour:
   bullet: {fileID: 7905111444797180890, guid: 429baa500e12fe84ebdc831b1decd5f9, type: 3}
   bulletSpeed: 15
   spread: 0.05
-  normalSprite: {fileID: -8186897675780755522, guid: 4e5b3c076a8829d4a86e4164d5e5f3ae, type: 3}
-  graySprite: {fileID: 8078897041468352302, guid: 5f5330e858f12294ca46227e7d8c1e7d, type: 3}
+  state: normal
   end_power_time: 0
   audiosource: {fileID: 1728305920561068112}
-  audiosourcePowerUp: {fileID: 7252094042069904041}
 --- !u!114 &2414034339982399998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 276642046400541087, guid: 81e9c7cd3b565704ab49d8746875375a, type: 3}
   scoreText: {fileID: 0}
+  normalSprite: {fileID: -8186897675780755522, guid: 4e5b3c076a8829d4a86e4164d5e5f3ae, type: 3}
+  graySprite: {fileID: 8078897041468352302, guid: 5f5330e858f12294ca46227e7d8c1e7d, type: 3}
+  audiosourcePowerUp: {fileID: 7252094042069904041}
 --- !u!82 &1728305920561068112
 AudioSource:
   m_ObjectHideFlags: 0

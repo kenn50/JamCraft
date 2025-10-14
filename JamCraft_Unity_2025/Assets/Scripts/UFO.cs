@@ -7,9 +7,7 @@ public class UFO : MonoBehaviour, IDestructable {
 
 
     public Transform dir_pointer;
-    public void Damage(float damage, Transform bullet) {
-        Die();
-    }
+
 
     private void Start()
     {
@@ -25,6 +23,10 @@ public class UFO : MonoBehaviour, IDestructable {
 
     }
 
+    public void Damage(float damage, Transform bullet)
+    {
+        Die();
+    }
     // Explode function
     public void Die() {
         dir_pointer.gameObject.SetActive(false);

@@ -98,7 +98,10 @@ public class MeteorSpawner : MonoBehaviour
         }
         else {
             GameObject g = Instantiate(meteor, spawn_pos, Quaternion.identity);
-            g.GetComponent<MeteorMovement>().move_dir = (target_pos - spawn_pos).normalized;
+            if(g.GetComponent<MeteorMovement>() != null)
+            {
+                g.GetComponent<MeteorMovement>().move_dir = (target_pos - spawn_pos).normalized;
+            }
         }
 
         
