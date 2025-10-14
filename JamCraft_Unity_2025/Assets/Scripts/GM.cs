@@ -42,6 +42,7 @@ public class GM : MonoBehaviour
 
 
     private void Start() {
+        print("hejssssss");
         if (singleton == null) {
             singleton = this;
         }

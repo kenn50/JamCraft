@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
@@ -16,16 +17,33 @@ public class Shoot : MonoBehaviour
     public AudioSource audiosource;
     public AudioSource audiosourcePowerUp;
 
+    FireAnim fire_anim;
+
+
+
     private void Start() {
         sr = GetComponent<SpriteRenderer>();
+        fire_anim = GetComponent<FireAnim>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (state == "triple") TripleShot();
+        if (state == "triple") CrazyColors();
 
-        else NormalShoot();
+
+        if (GetComponent<Move>().control_moving) return;
+
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            fire_anim.trigger_fire_anim();
+
+            if (state == "triple") TripleShot();
+            else NormalShoot();
+        }
+
 
 
         if (Time.time > end_power_time) {
@@ -46,21 +64,20 @@ public class Shoot : MonoBehaviour
     }
 
     void NormalShoot() {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            audiosource.pitch = Random.Range(0.9f, 1.1f);
-            audiosource.Play();
-            Fire(((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
-        }
+        
+        audiosource.pitch = Random.Range(0.9f, 1.1f);
+        audiosource.Play();
+        Fire(((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
+        
     }
     void TripleShot () {
-        CrazyColors();
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            audiosource.pitch = Random.Range(0.9f, 1.1f);
-            audiosource.Play();
-            Fire(((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
-            Fire(Quaternion.Euler(0,0,-30) * ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
-            Fire(Quaternion.Euler(0, 0, 30) * ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
-        }
+        
+        audiosource.pitch = Random.Range(0.9f, 1.1f);
+        audiosource.Play();
+        Fire(((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
+        Fire(Quaternion.Euler(0,0,-30) * ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
+        Fire(Quaternion.Euler(0, 0, 30) * ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized);
+        
     }
 
     void CrazyColors() {
@@ -71,5 +88,8 @@ public class Shoot : MonoBehaviour
         GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
 
         bul.transform.Rotate(0, 0, Mathf.Atan2(dir.y, dir.x) * 180 / Mathf.PI - 90);
+        
     }
-}
+
+
+ }

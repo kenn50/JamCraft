@@ -14,16 +14,22 @@ public class EnemyShoot : MonoBehaviour
     GameObject player;
     public GameObject bullet;
 
+    FireAnim fire_anim;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        fire_anim = GetComponent<FireAnim>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+
         if (Mathf.Abs(transform.position.x)<10 && Mathf.Abs(transform.position.y) < 6)
         ShootWave();
     }
@@ -47,7 +53,7 @@ public class EnemyShoot : MonoBehaviour
     }
 
     void Shoot () {
-        print("skyd");
+        fire_anim.trigger_fire_anim();
         GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
         Vector2 dirVector = (transform.position + Random.insideUnitSphere).normalized;
         if(player != null) dirVector = (player.transform.position - transform.position).normalized + Random.insideUnitSphere*spread;
