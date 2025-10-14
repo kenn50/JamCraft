@@ -10,6 +10,7 @@ public class VolumeControl : MonoBehaviour
     static bool controlled_volume = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         Mathf.Clamp(AudioListener.volume, 0f, 1f);

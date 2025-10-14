@@ -9,6 +9,14 @@ public class Player : MonoBehaviour, IDestructable
     public Text scoreText;
 
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            print("hej");
+        }
+    }
+
+
     private void OnCollisionEnter2D(Collision2D collision) {
 
         string tag  = collision.gameObject.tag;

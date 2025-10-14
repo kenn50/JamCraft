@@ -16,6 +16,9 @@ public class Move : MonoBehaviour
     float releaseTime = 0;
 
 
+    float nunu_multiplier = 1;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +32,7 @@ public class Move : MonoBehaviour
         float should_move = 1f;
         if(Input.GetKeyDown(KeyCode.Mouse1))
         {
+
             clickTime = Time.time;
             dir = ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized;            
         }
@@ -36,47 +40,43 @@ public class Move : MonoBehaviour
         {
             releaseTime = Time.time;
 
-            if (control_moving)
-            {
+            control_moving = false;
 
-                control_moving = false;
-            }
-
-            
         }
 
         dir_pointer.eulerAngles = new Vector3(0,0, Mathf.Atan2(dir.y, dir.x) * 180 / Mathf.PI);
-        
+
 
 
 
 
         if (releaseTime < clickTime && Time.time - clickTime > 0)
         {
-            if (!control_moving)
+            control_moving = true;
+
+            nunu_multiplier = Mathf.Max(nunu_multiplier + Time.deltaTime * 0.3f, 1.2f);
+
+            var from_player_to_mouse = ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position));
+            if (from_player_to_mouse.magnitude > 0.5f)
             {
-                control_moving = true;
-            }
-            var new_dir = ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position));
-            if(new_dir.magnitude > 0.5f)
-            {
-                dir = new_dir.normalized;
+                dir = dir + from_player_to_mouse.normalized * Time.deltaTime * 3 * nunu_multiplier;
+                dir /= Mathf.Max(dir.magnitude, 1);
             }
             else
             {
                 should_move = 0f;
             }
-
-
-             s *= 1.2f;
-
+        }
+        else
+        {
+            nunu_multiplier = Mathf.Min(nunu_multiplier - Time.deltaTime * 0.2f, 1f);
         }
 
 
 
 
 
-        rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, dir*s*should_move, acc * Time.deltaTime);
+         rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, dir*s*should_move*nunu_multiplier, acc * Time.deltaTime);
 
 
         
